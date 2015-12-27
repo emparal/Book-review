@@ -1,0 +1,29 @@
+<% if !user_signed_in? %>
+<div class="jumbotron">
+   <h1> Your Favorite Books Reviewed</h1>
+   <p>You Can Add Your Favorite Book To Be Reviewed</p>
+   <p><%= link_to "Sign Up To Add A Book",new_user_registration_path, class: "btn btn-primary btn-lg"%></P>
+ </div>
+<% end %>
+
+
+
+<h1 class="current-category"><%= params[:category] %></h1>
+
+<% if @books.count == 0 %>
+ <h1>There are no books currently in this category</h1>
+ <% else %>
+   <div class="row">
+
+     <%=@books.each do |book| %>
+       <div class="col-md-3">
+         <a href="/books/<%= book.id%>">
+           <%=image_tag book.book_img.url(:book_index),class: "book"%>
+         </a>
+       </div>
+
+     <% end %>
+
+   </div>
+
+<% end %>
